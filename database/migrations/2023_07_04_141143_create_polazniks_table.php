@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreatePolazniksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('polazniks', function (Blueprint $table) {
             $table->id();
             $table->string('ime'); 
-            $table->string('prezime');
-            $table->string('jmbg');
-            $table->string('brojTelefona');
+             $table->string('prezime');
+             $table->string('jmbg');
+             $table->string('email')->unique();
+             $table->string('brojTelefona');
+
             $table->timestamps();
         });
     }
@@ -32,4 +34,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('polazniks');
     }
-};
+}

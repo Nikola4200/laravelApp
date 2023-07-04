@@ -2,8 +2,13 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
+use App\Models\Kupovina;
+use App\Models\Polaznik;
+use App\Models\Kurs;
 use Illuminate\Database\Seeder;
+
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +19,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::truncate();
+        Kupovina::truncate();
+        Polaznik::truncate();
+        Kurs::truncate();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory(10)->create();
+
+        Polaznik::factory(10)->create();
+
+        (new KursSeeder())->run();
+
+        Kupovina::factory(10)->create();
+
     }
 }
