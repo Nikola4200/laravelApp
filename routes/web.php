@@ -1,5 +1,9 @@
 <?php
 
+
+use App\Http\Controllers\PolazinkController;
+
+use App\Http\Controllers\PolaznikController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +20,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/polaznici/{id}',[PolaznikController::class,'show']);
+
+// Route::get('/polaznici', [PolaznikController::class, 'index']);

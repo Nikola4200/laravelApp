@@ -1,5 +1,11 @@
 <?php
 
+
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KupovinaController;
+use App\Http\Controllers\KursController;
+use App\Http\Controllers\PolaznikController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +20,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::post('/register',[AuthController::class,'register']);
+Route::post('/login',[AuthController::class,'login']);
+
+
+Route::get('/kursevi',[KursController::class,'index']);
+Route::get('/polaznici',[PolaznikController::class,'index']);
+Route::get('/polaznici/{id}',[PolaznikController::class,'show']);
+
+
+
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    Route::post('/logout',[AuthController::class,'logout']);
+
+    Route::get('/kupovine',[KupovinaController::class,'index']);
+    Route::delete('/polaznici/{id}',[PolaznikController::class,'destroy']);
+    Route::post('/polaznici',[PolaznikController::class,'store']);
+
+    Route::put('/polaznici/{id}',[PolaznikController::class,'update']);
 });
